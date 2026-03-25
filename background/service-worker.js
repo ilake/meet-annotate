@@ -1,15 +1,21 @@
 const activeTabs = new Set();
 
 chrome.action.onClicked.addListener(async (tab) => {
-  // 跳過無法注入的頁面（Chrome 內部頁面、Meet 已自動注入）
-  if (!tab.url || tab.url.startsWith('chrome') || tab.url.includes('meet.google.com')) {
-    return;
-  }
+  if (!tab.url || tab.url.startsWith('chrome')) return;
 
   if (activeTabs.has(tab.id)) {
     activeTabs.delete(tab.id);
     chrome.action.setBadgeText({ text: '', tabId: tab.id });
     chrome.tabs.sendMessage(tab.id, { type: 'ANNOTATE_OFF' });
+    return;
+  }
+
+  // Meet：scripts 已自動注入，只需發訊息啟動全螢幕模式
+  if (tab.url.includes('meet.google.com')) {
+    chrome.tabs.sendMessage(tab.id, { type: 'ANNOTATE_FULLSCREEN' });
+    activeTabs.add(tab.id);
+    chrome.action.setBadgeText({ text: 'ON', tabId: tab.id });
+    chrome.action.setBadgeBackgroundColor({ color: '#4CAF50' });
     return;
   }
 
