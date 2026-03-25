@@ -256,12 +256,46 @@ var CanvasOverlay = {
       DrawingEngine.clearMine();
     });
 
+    // 拖拉 toolbar
+    this._initDrag();
+
     // Ctrl+Z / Cmd+Z 快捷鍵
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
         e.preventDefault();
         DrawingEngine.undo();
       }
+    });
+  },
+
+  _initDrag() {
+    let dragging = false;
+    let offsetX = 0, offsetY = 0;
+
+    this.toolbar.addEventListener('mousedown', (e) => {
+      // 只在 toolbar 背景或 label 上觸發，不攔截按鈕
+      if (e.target.closest('.ma-btn, .ma-color, #ma-size')) return;
+      dragging = true;
+      const rect = this.toolbar.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      this.toolbar.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      // 切換到絕對定位
+      this.toolbar.style.left = (e.clientX - offsetX) + 'px';
+      this.toolbar.style.top = (e.clientY - offsetY) + 'px';
+      this.toolbar.style.bottom = 'auto';
+      this.toolbar.style.transform = 'none';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      this.toolbar.style.cursor = 'grab';
     });
   },
 
