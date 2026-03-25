@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup">
+    <h2>Meet Annotate</h2>
+    <div id="status">
+      <span id="status-dot" class="dot disconnected"></span>
+      <span id="status-text">不在 Meet 會議中</span>
+    </div>
+    <div id="room-info" style="display:none">
+      <p>Room: <code id="room-id"></code></p>
+    </div>
+    <p class="hint">在 Google Meet 分享畫面後，點擊工具列的畫筆圖示開始標註</p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
