@@ -1,4 +1,4 @@
-Screen Annotate — Real-time Collaborative Screen Annotation
+Annotate Together — Real-time Collaborative Screen Drawing Tool
 
 Annotate any webpage together in real-time. Multiple people can draw, highlight, and mark up the same screen simultaneously — no screen-sharing control needed.
 

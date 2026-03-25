@@ -31,7 +31,7 @@ synchronization of drawing annotations between multiple users."
 ---
 
 5. Single Purpose Description
-"Screen Annotate allows users to collaboratively draw annotations on
+"Annotate Together allows users to collaboratively draw annotations on
 any webpage in real-time, with automatic activation on Google Meet
 screen shares."
 

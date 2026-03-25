@@ -138,7 +138,7 @@ var CanvasOverlay = {
     ).join('');
 
     this.toolbar.innerHTML = `
-      <span class="ma-label">Screen Annotate</span>
+      <span class="ma-label">Annotate Together</span>
       <div class="ma-sep"></div>
       <button id="ma-toggle" class="ma-btn ma-active" title="Stop Drawing">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
