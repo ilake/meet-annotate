@@ -24,6 +24,7 @@
   // 接收關閉指令
   chrome.runtime.onMessage.addListener((msg) => {
     if (msg.type === 'ANNOTATE_OFF') {
+      FirebaseSync.clearRoom();
       FirebaseSync.disconnect();
       CanvasOverlay.destroy();
       window._screenAnnotateActive = false;
