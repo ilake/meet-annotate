@@ -302,10 +302,14 @@ var CanvasOverlay = {
   destroy() {
     if (this.canvas && this.canvas.parentNode) this.canvas.parentNode.removeChild(this.canvas);
     if (this.toolbar && this.toolbar.parentNode) this.toolbar.parentNode.removeChild(this.toolbar);
+    // 防呆：確保 DOM 元素被移除
+    document.getElementById('ma-canvas')?.remove();
+    document.getElementById('ma-toolbar')?.remove();
     if (this._positionInterval) clearInterval(this._positionInterval);
     if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
     this.canvas = null;
     this.ctx = null;
+    this.toolbar = null;
     this.targetVideo = null;
     this.isActive = false;
     this.drawingEnabled = false;
