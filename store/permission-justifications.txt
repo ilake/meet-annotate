@@ -1,0 +1,44 @@
+== Chrome Web Store Permission Justifications ==
+
+These are the justifications to fill in when the Chrome Web Store asks
+why your extension needs each permission.
+
+---
+
+1. activeTab
+"Required to detect the current page URL so the extension can create
+a shared annotation room for all users on the same page."
+
+---
+
+2. scripting
+"Required to inject the annotation canvas overlay and drawing toolbar
+into web pages when the user clicks the extension icon. Scripts are
+only injected on user action (icon click), never in the background."
+
+---
+
+3. Host permission: https://*.firebaseio.com/*
+"Required to connect to Firebase Realtime Database for real-time
+synchronization of drawing annotations between multiple users."
+
+---
+
+4. Host permission: https://*.firebasedatabase.app/*
+"Required to connect to Firebase Realtime Database for real-time
+synchronization of drawing annotations between multiple users."
+
+---
+
+5. Single Purpose Description
+"Screen Annotate allows users to collaboratively draw annotations on
+any webpage in real-time, with automatic activation on Google Meet
+screen shares."
+
+---
+
+6. Why does your extension need to run on meet.google.com?
+"The extension automatically detects Google Meet screen sharing and
+overlays a collaborative annotation canvas on the shared screen,
+allowing meeting participants to draw and highlight content together
+in real-time."

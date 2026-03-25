@@ -216,7 +216,7 @@ var DrawingEngine = {
 
   // --- 文字 ---
   _handleText(pt, w, h) {
-    const text = prompt('輸入文字：');
+    const text = prompt('Enter text:');
     if (!text) return;
 
     const stroke = {

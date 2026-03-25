@@ -125,7 +125,7 @@ var CanvasOverlay = {
     const btn = document.getElementById('ma-toggle');
     if (btn) {
       btn.classList.toggle('ma-active', this.drawingEnabled);
-      btn.title = this.drawingEnabled ? '停止畫畫 (可點擊 Meet 按鈕)' : '開始畫畫';
+      btn.title = this.drawingEnabled ? 'Stop Drawing' : 'Start Drawing';
     }
   },
 
@@ -140,7 +140,7 @@ var CanvasOverlay = {
     this.toolbar.innerHTML = `
       <span class="ma-label">Screen Annotate</span>
       <div class="ma-sep"></div>
-      <button id="ma-toggle" class="ma-btn ma-active" title="停止畫畫">
+      <button id="ma-toggle" class="ma-btn ma-active" title="Stop Drawing">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 19l7-7 3 3-7 7-3-3z"/>
           <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
@@ -149,41 +149,41 @@ var CanvasOverlay = {
         </svg>
       </button>
       <div class="ma-sep"></div>
-      <button id="ma-pen" class="ma-btn ma-tool-active" title="畫筆">
+      <button id="ma-pen" class="ma-btn ma-tool-active" title="Pen">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="2" y1="22" x2="22" y2="2"/>
         </svg>
       </button>
-      <button id="ma-eraser" class="ma-btn" title="橡皮擦" data-tool="eraser">
+      <button id="ma-eraser" class="ma-btn" title="Eraser" data-tool="eraser">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 20H7L3 16l9-9 8 8-4 4z"/>
           <line x1="6" y1="11" x2="13" y2="18"/>
         </svg>
       </button>
-      <button id="ma-line" class="ma-btn" title="直線" data-tool="line">
+      <button id="ma-line" class="ma-btn" title="Line" data-tool="line">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="4" y1="20" x2="20" y2="4"/>
         </svg>
       </button>
-      <button id="ma-arrow" class="ma-btn" title="箭頭" data-tool="arrow">
+      <button id="ma-arrow" class="ma-btn" title="Arrow" data-tool="arrow">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="4" y1="20" x2="20" y2="4"/>
           <polyline points="10 4 20 4 20 14"/>
         </svg>
       </button>
-      <button id="ma-rect" class="ma-btn" title="矩形" data-tool="rect">
+      <button id="ma-rect" class="ma-btn" title="Rectangle" data-tool="rect">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2"/>
         </svg>
       </button>
-      <button id="ma-text" class="ma-btn" title="文字" data-tool="text">
+      <button id="ma-text" class="ma-btn" title="Text" data-tool="text">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="4 7 4 4 20 4 20 7"/>
           <line x1="12" y1="4" x2="12" y2="20"/>
           <line x1="8" y1="20" x2="16" y2="20"/>
         </svg>
       </button>
-      <button id="ma-laser" class="ma-btn" title="雷射筆 (2秒消失)" data-tool="laser">
+      <button id="ma-laser" class="ma-btn" title="Laser Pointer (fades in 2s)" data-tool="laser">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="12" r="3"/>
           <line x1="12" y1="1" x2="12" y2="4"/>
@@ -195,15 +195,15 @@ var CanvasOverlay = {
       <div class="ma-sep"></div>
       <div id="ma-colors">${colorBtns}</div>
       <div class="ma-sep"></div>
-      <input id="ma-size" type="range" min="1" max="20" value="${DEFAULTS.penWidth}" title="筆寬">
+      <input id="ma-size" type="range" min="1" max="20" value="${DEFAULTS.penWidth}" title="Stroke Width">
       <div class="ma-sep"></div>
-      <button id="ma-undo" class="ma-btn" title="上一步 (Ctrl+Z)">
+      <button id="ma-undo" class="ma-btn" title="Undo (Ctrl+Z)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="1 4 1 10 7 10"/>
           <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
         </svg>
       </button>
-      <button id="ma-clear" class="ma-btn ma-danger" title="全部清除">
+      <button id="ma-clear" class="ma-btn ma-danger" title="Clear All">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="3 6 5 6 21 6"/>
           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>

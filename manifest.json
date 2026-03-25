@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Screen Annotate",
   "version": "2.1.0",
-  "description": "在任何網頁上即時協作畫畫標註。Google Meet 自動啟動，其他網頁點圖示啟動",
+  "description": "Real-time collaborative screen annotation. Auto-starts on Google Meet, click icon on other pages.",
   "permissions": [
     "activeTab",
     "scripting"

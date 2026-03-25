@@ -1,0 +1,52 @@
+== Chrome Web Store Upload Checklist ==
+
+[x] Extension ZIP file
+    → /Users/iamilake/rails_app/tutor_prj/screen-annotate.zip
+
+[x] Store description
+    → store/description.txt (copy-paste to store listing)
+
+[x] Privacy policy
+    → store/privacy-policy.html
+    → Host this file somewhere public (GitHub Pages, Google Sites, etc.)
+    → Paste the URL in the Chrome Web Store listing
+
+[x] Permission justifications
+    → store/permission-justifications.txt (answers for store review)
+
+[ ] Screenshots (YOU NEED TO CREATE THESE)
+    → At least 1 screenshot, recommended 3-5
+    → Size: 1280x800 or 640x400
+    → Suggested screenshots:
+      1. Drawing on a webpage with toolbar visible
+      2. Two browsers side-by-side showing real-time sync
+      3. Drawing on Google Meet screen share
+      4. Close-up of the toolbar with all tools
+
+[ ] Promotional images (OPTIONAL but recommended)
+    → Small tile: 440x280
+    → Large tile: 920x680
+    → Marquee: 1400x560
+
+[ ] Developer account
+    → https://chrome.google.com/webstore/devconsole
+    → One-time $5 USD registration fee
+
+[ ] Store listing fields
+    → Name: Screen Annotate
+    → Category: Productivity
+    → Language: English
+    → Website: (optional)
+
+== HOSTING PRIVACY POLICY ==
+
+Option A: GitHub Pages (free)
+  1. Create a public GitHub repo
+  2. Push store/privacy-policy.html
+  3. Enable GitHub Pages in repo settings
+  4. URL: https://<username>.github.io/<repo>/privacy-policy.html
+
+Option B: Google Sites (free)
+  1. Create a Google Site
+  2. Paste the privacy policy content
+  3. Publish and use the URL

@@ -1,0 +1,47 @@
+Screen Annotate — Real-time Collaborative Screen Annotation
+
+Annotate any webpage together in real-time. Multiple people can draw, highlight, and mark up the same screen simultaneously — no screen-sharing control needed.
+
+Built for collaboration: tutors and students, designers and clients, teammates in meetings. Everyone on the same page sees each other's annotations instantly.
+
+⚡ TWO MODES
+• Google Meet: Automatically activates when someone shares their screen — all participants can annotate the shared view together
+• Any Website: Click the extension icon and invite others to the same URL — everyone draws on the same canvas in real-time
+
+🖊️ DRAWING TOOLS
+• Pen — Smooth freehand drawing
+• Eraser — Remove strokes easily
+• Line & Arrow — Straight lines with optional arrowheads
+• Rectangle — Outline shapes for highlighting areas
+• Text — Place text annotations anywhere
+• Laser Pointer — Glowing pointer that fades after 2 seconds, perfect for guiding attention
+• 8 colors + adjustable stroke width
+• Undo (Ctrl+Z / Cmd+Z) and Clear
+
+👥 REAL-TIME COLLABORATION
+• Multiple users draw on the same page simultaneously
+• See each other's annotations appear instantly
+• No login or account required — just open the same URL
+• Each person can only undo/clear their own drawings
+• Synced across all participants automatically
+
+💡 USE CASES
+• Online tutoring — Teacher and student annotate lesson materials together
+• Design reviews — Point out feedback directly on mockups and prototypes
+• Remote meetings — Highlight key points on shared documents during calls
+• Team collaboration — Mark up any webpage with your team in real-time
+• Presentations — Use the laser pointer to guide your audience's attention
+
+🔒 PRIVACY-FRIENDLY
+• No user accounts or personal data collected
+• Drawings are temporary and auto-delete after 1 hour
+• No tracking, no analytics, no ads
+
+HOW IT WORKS
+1. Install the extension
+2. On Google Meet: annotations auto-activate when screen sharing starts
+3. On any other page: click the extension icon to start annotating
+4. Share the URL with collaborators — they install the extension and open the same page
+5. Everyone draws together in real-time
+
+This extension uses Firebase Realtime Database for synchronization. No personal information is collected or stored. All drawing data is temporary and automatically deleted.

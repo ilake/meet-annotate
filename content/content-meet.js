@@ -4,7 +4,7 @@
   if (window._screenAnnotateActive) return;
 
   if (FIREBASE_CONFIG.projectId === 'YOUR_PROJECT_ID') {
-    console.warn('[ScreenAnnotate] 請先在 shared/constants.js 設定 Firebase 專案資訊');
+    console.warn('[ScreenAnnotate] Please configure Firebase in shared/constants.js');
     return;
   }
 

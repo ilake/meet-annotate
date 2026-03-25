@@ -1,22 +1,22 @@
-// Firebase 設定 — 請替換成你的 Firebase 專案資訊
+// Firebase config
 var FIREBASE_CONFIG = {
   projectId: 'screen-annotations',
   databaseUrl: 'https://screen-annotations-default-rtdb.asia-southeast1.firebasedatabase.app'
 };
 
-// 畫筆顏色
+// Colors
 var COLORS = [
-  '#FF0000', // 紅
-  '#FF9800', // 橙
-  '#FFEB3B', // 黃
-  '#4CAF50', // 綠
-  '#2196F3', // 藍
-  '#9C27B0', // 紫
-  '#FFFFFF', // 白
-  '#000000'  // 黑
+  '#FF0000',
+  '#FF9800',
+  '#FFEB3B',
+  '#4CAF50',
+  '#2196F3',
+  '#9C27B0',
+  '#FFFFFF',
+  '#000000'
 ];
 
-// 預設值
+// Defaults
 var DEFAULTS = {
   color: '#FF0000',
   penWidth: 3,
