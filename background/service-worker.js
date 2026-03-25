@@ -10,15 +10,6 @@ chrome.action.onClicked.addListener(async (tab) => {
     return;
   }
 
-  // Meet：scripts 已自動注入，只需發訊息啟動全螢幕模式
-  if (tab.url.includes('meet.google.com')) {
-    chrome.tabs.sendMessage(tab.id, { type: 'ANNOTATE_FULLSCREEN' });
-    activeTabs.add(tab.id);
-    chrome.action.setBadgeText({ text: 'ON', tabId: tab.id });
-    chrome.action.setBadgeBackgroundColor({ color: '#4CAF50' });
-    return;
-  }
-
   await chrome.scripting.insertCSS({
     target: { tabId: tab.id },
     files: ['content/content.css']

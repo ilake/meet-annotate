@@ -12,23 +12,6 @@
     "https://*.firebaseio.com/*",
     "https://*.firebasedatabase.app/*"
   ],
-  "content_scripts": [
-    {
-      "matches": ["https://meet.google.com/*"],
-      "js": [
-        "shared/constants.js",
-        "content/coordinate-normalizer.js",
-        "content/room-manager.js",
-        "content/firebase-sync.js",
-        "content/drawing-engine.js",
-        "content/canvas-overlay.js",
-        "content/meet-detector.js",
-        "content/content-meet.js"
-      ],
-      "css": ["content/content.css"],
-      "run_at": "document_idle"
-    }
-  ],
   "background": {
     "service_worker": "background/service-worker.js"
   },
