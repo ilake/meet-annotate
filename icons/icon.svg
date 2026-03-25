@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background: rounded square -->
+  <rect x="4" y="4" width="120" height="120" rx="24" fill="#4285F4"/>
+
+  <!-- Pen 1 (left, red) - tilted -->
+  <g transform="translate(34, 28) rotate(-10, 20, 40)">
+    <rect x="14" y="0" width="12" height="52" rx="2" fill="#EA4335"/>
+    <polygon points="14,52 26,52 20,68" fill="#FDD663"/>
+    <rect x="14" y="0" width="12" height="8" rx="2" fill="#D93025"/>
+  </g>
+
+  <!-- Pen 2 (right, green) - tilted other way -->
+  <g transform="translate(68, 28) rotate(10, 20, 40)">
+    <rect x="14" y="0" width="12" height="52" rx="2" fill="#34A853"/>
+    <polygon points="14,52 26,52 20,68" fill="#FDD663"/>
+    <rect x="14" y="0" width="12" height="8" rx="2" fill="#1E8E3E"/>
+  </g>
+
+  <!-- Stroke line connecting (collaboration) -->
+  <path d="M28 100 Q44 82 64 90 Q84 98 100 80" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Small dots (multiple users drawing) -->
+  <circle cx="28" cy="100" r="4" fill="#EA4335"/>
+  <circle cx="100" cy="80" r="4" fill="#34A853"/>
+</svg>
