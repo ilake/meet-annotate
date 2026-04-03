@@ -1,12 +1,13 @@
 Annotate Together — Real-time Collaborative Screen Drawing Tool
 
-Annotate any webpage together in real-time. Multiple people can draw, highlight, and mark up the same screen simultaneously — no screen-sharing control needed.
+Annotate any webpage together in real-time. Click the extension icon to start, then multiple people can draw, highlight, and mark up the same screen simultaneously.
 
 Built for collaboration: tutors and students, designers and clients, teammates in meetings. Everyone on the same page sees each other's annotations instantly.
 
-⚡ TWO MODES
-• Google Meet: Automatically activates when someone shares their screen — all participants can annotate the shared view together
-• Any Website: Click the extension icon and invite others to the same URL — everyone draws on the same canvas in real-time
+⚡ HOW TO USE
+• Click the extension icon on any webpage to start annotating
+• Share the URL with collaborators — everyone on the same page draws on the same canvas in real-time
+• Works great with Google Meet, Zoom, or any screen-sharing tool
 
 🖊️ DRAWING TOOLS
 • Pen — Smooth freehand drawing
@@ -39,9 +40,8 @@ Built for collaboration: tutors and students, designers and clients, teammates i
 
 HOW IT WORKS
 1. Install the extension
-2. On Google Meet: annotations auto-activate when screen sharing starts
-3. On any other page: click the extension icon to start annotating
-4. Share the URL with collaborators — they install the extension and open the same page
-5. Everyone draws together in real-time
+2. Click the extension icon on any page to start annotating
+3. Share the URL with collaborators — they install the extension and open the same page
+4. Everyone draws together in real-time
 
 This extension uses Firebase Realtime Database for synchronization. No personal information is collected or stored. All drawing data is temporary and automatically deleted.
