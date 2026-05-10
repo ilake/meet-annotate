@@ -1,4 +1,4 @@
-Annotate Together — 即時多人協作螢幕標註工具
+Annotate Together — 即時多人協作螢幕標註工具 by TutorNetworking
 
 在任何網頁上與他人即時協作標註。點擊擴充功能圖示即可開始，多人可以同時在同一個畫面上畫畫、標記、註解。
 
@@ -43,5 +43,9 @@ Annotate Together — 即時多人協作螢幕標註工具
 2. 在任何網頁上點擊擴充功能圖示開始標註
 3. 把網址分享給協作者——他們安裝擴充功能後開啟同一頁面
 4. 所有人一起即時畫畫
+
+🌐 更多免費教學工具
+Annotate Together 是 TutorNetworking 為獨立老師打造的免費工具之一。探索更多：
+https://tutornetworking.com/tools/annotate-together?utm_source=chrome_web_store&utm_medium=extension
 
 本擴充功能使用 Firebase Realtime Database 進行同步。不收集或儲存任何個人資訊。所有畫畫資料為暫時性並會自動刪除。

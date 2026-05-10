@@ -1,4 +1,4 @@
-Annotate Together — リアルタイム共同画面注釈ツール
+Annotate Together — リアルタイム共同画面注釈ツール by TutorNetworking
 
 ウェブページ上でリアルタイムに共同注釈。複数人が同じ画面に同時に描画・マーキング・注釈できます。画面共有の操作権限は不要です。
 
@@ -43,5 +43,9 @@ Annotate Together — リアルタイム共同画面注釈ツール
 2. 任意のページで拡張機能アイコンをクリックして注釈を開始
 3. コラボレーターにURLを共有——拡張機能をインストールして同じページを開く
 4. 全員でリアルタイムに描画
+
+🌐 その他の無料教学ツール
+Annotate Together は TutorNetworking が独立講師向けに提供する無料ツールの一つです。詳しくはこちら：
+https://tutornetworking.com/tools/annotate-together?utm_source=chrome_web_store&utm_medium=extension
 
 この拡張機能はFirebase Realtime Databaseを使用して同期します。個人情報の収集・保存は一切行いません。すべての描画データは一時的で自動的に削除されます。
