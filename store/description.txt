@@ -7,7 +7,8 @@ Built for collaboration: tutors and students, designers and clients, teammates i
 ⚡ HOW TO USE
 • Click the extension icon on any webpage to start annotating
 • Share the URL with collaborators — everyone on the same page draws on the same canvas in real-time
-• Works great with Google Meet, Zoom, or any screen-sharing tool
+• Everyone must install the extension and click its icon on that page. Someone who has not clicked it cannot see the drawings
+• During a video call (Google Meet, Zoom), everyone opens the same page you are sharing. Annotations appear on the page, not on the video
 
 🖊️ DRAWING TOOLS
 • Pen — Smooth freehand drawing
@@ -35,13 +36,13 @@ Built for collaboration: tutors and students, designers and clients, teammates i
 
 🔒 PRIVACY-FRIENDLY
 • No user accounts or personal data collected
-• Drawings are temporary and auto-delete after 1 hour
+• Drawings are temporary: your strokes are removed when you turn annotation off or leave the page
 • No tracking, no analytics, no ads
 
 HOW IT WORKS
 1. Install the extension
 2. Click the extension icon on any page to start annotating
-3. Share the URL with collaborators — they install the extension and open the same page
+3. Share the URL with collaborators — they install the extension, open the same page, and click the extension icon too
 4. Everyone draws together in real-time
 
 🌐 MORE FREE TEACHING TOOLS
