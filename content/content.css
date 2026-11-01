@@ -121,3 +121,17 @@
   white-space: nowrap;
   padding: 0 4px;
 }
+
+/* Toggle button with a text label (Drawing / Browsing) */
+#ma-toolbar .ma-btn.ma-text-btn {
+  width: auto;
+  padding: 0 10px;
+  gap: 6px;
+  border-radius: 17px;
+}
+
+#ma-toolbar .ma-toggle-label {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}

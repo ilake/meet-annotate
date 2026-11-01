@@ -50,11 +50,13 @@ var FirebaseSync = {
   async sendStroke(stroke) {
     const url = `${this.baseUrl}/rooms/${this.roomId}/strokes/${stroke.id}.json`;
     try {
-      await fetch(url, {
+      const res = await fetch(url, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(stroke)
       });
+      // fetch only throws on network errors. A rejected write (HTTP 401/403) must not be silent.
+      if (!res.ok) console.warn('[MeetAnnotate] sync rejected, HTTP', res.status);
     } catch (err) {
       console.error('[MeetAnnotate] sync error:', err);
     }
@@ -68,21 +70,20 @@ var FirebaseSync = {
       const data = JSON.parse(event.data);
 
       if (data.path === '/') {
-        if (data.data === null) {
-          // 全部清除（對方按了清除）
-          this._handleRemoteDelete('/');
-        } else if (data.data) {
-          // 初次載入：取得所有筆畫
-          const now = Date.now();
-          const EXPIRY = 60 * 60 * 1000; // 1 小時
-          Object.values(data.data).forEach(stroke => {
-            if (this._isValidStroke(stroke) && stroke.userId !== this.userId) {
-              if (stroke.timestamp && (now - stroke.timestamp) < EXPIRY) {
-                DrawingEngine.addRemoteStroke(stroke);
-              }
-            }
-          });
-        }
+        // 完整快照（初次載入，或斷線重連後重新送來）。
+        // 以快照為準：別人的筆畫只留快照裡有的，自己的筆畫永遠保留。
+        const now = Date.now();
+        const EXPIRY = 60 * 60 * 1000; // 1 小時
+        const incoming = Object.values(data.data || {}).filter(stroke =>
+          this._isValidStroke(stroke) && stroke.userId !== this.userId &&
+          stroke.timestamp && (now - stroke.timestamp) < EXPIRY
+        );
+        const keep = new Set(incoming.map(s => s.id));
+        DrawingEngine.allStrokes = DrawingEngine.allStrokes.filter(
+          s => s.userId === this.userId || keep.has(s.id)
+        );
+        DrawingEngine.redraw();
+        incoming.forEach(stroke => DrawingEngine.addRemoteStroke(stroke)); // 已有的會自動略過
       } else {
         // 單筆更新
         const stroke = data.data;
@@ -128,8 +129,8 @@ var FirebaseSync = {
       // 單筆撤銷
       DrawingEngine.allStrokes = DrawingEngine.allStrokes.filter(s => s.id !== strokeId);
     } else {
-      // 全部清除
-      DrawingEngine.allStrokes = [];
+      // 全部清除：只清別人的，自己的筆畫保留
+      DrawingEngine.allStrokes = DrawingEngine.allStrokes.filter(s => s.userId === DrawingEngine.userId);
     }
 
     // 重繪
@@ -150,20 +151,14 @@ var FirebaseSync = {
     }
   },
 
-  async clearRoom() {
-    const url = `${this.baseUrl}/rooms/${this.roomId}/strokes.json`;
-    try {
-      await fetch(url, { method: 'DELETE' });
-    } catch (err) {
-      console.error('[MeetAnnotate] clear error:', err);
-    }
-  },
-
-  // beforeunload 專用：keepalive 確保頁面關閉前送出
-  clearRoomOnUnload() {
-    if (!this.baseUrl || !this.roomId) return;
-    const url = `${this.baseUrl}/rooms/${this.roomId}/strokes.json`;
-    fetch(url, { method: 'DELETE', keepalive: true }).catch(() => {});
+  // 只刪指定的筆畫（呼叫端傳自己的筆畫 id）。絕不刪整個房間，否則會清掉別人的筆畫。
+  // keepalive: 頁面關閉（beforeunload）時用，確保請求能送出。
+  deleteStrokes(ids, opts) {
+    if (!this.baseUrl || !this.roomId || !ids) return;
+    ids.forEach(id => {
+      const url = `${this.baseUrl}/rooms/${this.roomId}/strokes/${id}.json`;
+      fetch(url, { method: 'DELETE', keepalive: !!(opts && opts.keepalive) }).catch(() => {});
+    });
   },
 
   disconnect() {

@@ -298,7 +298,21 @@ var DrawingEngine = {
     this.allStrokes.forEach(s => this._drawFullStroke(ctx, s, w, h));
   },
 
+  ownStrokeIds() {
+    return this.allStrokes.filter(s => s.userId === this.userId).map(s => s.id);
+  },
+
+  // 清掉畫布並重畫所有筆畫
+  redraw() {
+    if (!this.canvas || !this.ctx) return;
+    const { w, h } = this._canvasSize();
+    this.ctx.clearRect(0, 0, w, h);
+    this.redrawAll(this.ctx, this.canvas.width, this.canvas.height);
+  },
+
   addRemoteStroke(stroke) {
+    // 斷線重連時伺服器會重送全部筆畫，已經有的不重複加
+    if (this.allStrokes.some(s => s.id === stroke.id)) return;
     this.allStrokes.push(stroke);
     if (!this.canvas || !this.ctx) return;
     const { w, h } = this._canvasSize();

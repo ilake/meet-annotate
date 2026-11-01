@@ -125,7 +125,11 @@ var CanvasOverlay = {
     const btn = document.getElementById('ma-toggle');
     if (btn) {
       btn.classList.toggle('ma-active', this.drawingEnabled);
-      btn.title = this.drawingEnabled ? 'Stop Drawing' : 'Start Drawing';
+      btn.title = this.drawingEnabled
+        ? 'Drawing is ON. Click to use the page normally (click, scroll, type).'
+        : 'Browsing. Click to draw again.';
+      const label = btn.querySelector('.ma-toggle-label');
+      if (label) label.textContent = this.drawingEnabled ? 'Drawing' : 'Browsing';
     }
   },
 
@@ -140,13 +144,14 @@ var CanvasOverlay = {
     this.toolbar.innerHTML = `
       <span class="ma-label">Annotate Together</span>
       <div class="ma-sep"></div>
-      <button id="ma-toggle" class="ma-btn ma-active" title="Stop Drawing">
+      <button id="ma-toggle" class="ma-btn ma-text-btn ma-active" title="Drawing is ON. Click to use the page normally (click, scroll, type).">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 19l7-7 3 3-7 7-3-3z"/>
           <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
           <path d="M2 2l7.586 7.586"/>
           <circle cx="11" cy="11" r="2"/>
         </svg>
+        <span class="ma-toggle-label">Drawing</span>
       </button>
       <div class="ma-sep"></div>
       <button id="ma-pen" class="ma-btn ma-tool-active" title="Pen">
@@ -203,10 +208,17 @@ var CanvasOverlay = {
           <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
         </svg>
       </button>
-      <button id="ma-clear" class="ma-btn ma-danger" title="Clear All">
+      <button id="ma-clear" class="ma-btn ma-danger" title="Clear my drawings">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="3 6 5 6 21 6"/>
           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+      </button>
+      <div class="ma-sep"></div>
+      <button id="ma-close" class="ma-btn" title="Close Annotate Together">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
         </svg>
       </button>
     `;
@@ -256,16 +268,26 @@ var CanvasOverlay = {
       DrawingEngine.clearMine();
     });
 
+    document.getElementById('ma-close').addEventListener('click', () => {
+      if (this.onClose) this.onClose();
+      else this.destroy();
+    });
+
     // 拖拉 toolbar
     this._initDrag();
 
-    // Ctrl+Z / Cmd+Z 快捷鍵
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
-        e.preventDefault();
-        DrawingEngine.undo();
-      }
-    });
+    // Ctrl+Z / Cmd+Z 快捷鍵。
+    // 只在「畫圖模式」且不是在輸入框裡時攔截；destroy() 會移除，不會殘留在頁面上。
+    this._keyHandler = (e) => {
+      if (!this.drawingEnabled) return;
+      if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey) return;
+      if (String(e.key).toLowerCase() !== 'z') return;
+      const t = e.target;
+      if (t && (t.isContentEditable || (t.closest && t.closest('input, textarea, select, [contenteditable=""], [contenteditable="true"]')))) return;
+      e.preventDefault();
+      DrawingEngine.undo();
+    };
+    document.addEventListener('keydown', this._keyHandler);
   },
 
   _initDrag() {
@@ -283,20 +305,21 @@ var CanvasOverlay = {
       e.preventDefault();
     });
 
-    document.addEventListener('mousemove', (e) => {
-      if (!dragging) return;
+    this._moveHandler = (e) => {
+      if (!dragging || !this.toolbar) return;
       // 切換到絕對定位
       this.toolbar.style.left = (e.clientX - offsetX) + 'px';
       this.toolbar.style.top = (e.clientY - offsetY) + 'px';
       this.toolbar.style.bottom = 'auto';
       this.toolbar.style.transform = 'none';
-    });
-
-    document.addEventListener('mouseup', () => {
+    };
+    this._upHandler = () => {
       if (!dragging) return;
       dragging = false;
-      this.toolbar.style.cursor = 'grab';
-    });
+      if (this.toolbar) this.toolbar.style.cursor = 'grab';
+    };
+    document.addEventListener('mousemove', this._moveHandler);
+    document.addEventListener('mouseup', this._upHandler);
   },
 
   destroy() {
@@ -307,6 +330,11 @@ var CanvasOverlay = {
     document.getElementById('ma-toolbar')?.remove();
     if (this._positionInterval) clearInterval(this._positionInterval);
     if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
+    // 這些監聽器掛在 document 上，不移除會一直留在頁面（而且每開關一次就多一份）
+    if (this._keyHandler) document.removeEventListener('keydown', this._keyHandler);
+    if (this._moveHandler) document.removeEventListener('mousemove', this._moveHandler);
+    if (this._upHandler) document.removeEventListener('mouseup', this._upHandler);
+    this._keyHandler = this._moveHandler = this._upHandler = null;
     this.canvas = null;
     this.ctx = null;
     this.toolbar = null;
