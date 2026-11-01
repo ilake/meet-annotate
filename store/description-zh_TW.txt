@@ -49,4 +49,4 @@ Annotate Together — 即時多人協作螢幕標註工具 by TutorNetworking
 Annotate Together 是 TutorNetworking 為獨立老師打造的免費工具之一。探索更多：
 https://tutornetworking.com/tools/annotate-together?utm_source=chrome_web_store&utm_medium=extension
 
-本擴充功能使用 Firebase Realtime Database 進行同步。不收集或儲存任何個人資訊。所有畫畫資料為暫時性並會自動刪除。
+本擴充功能使用 Firebase Realtime Database 進行同步。不收集或儲存任何個人資訊。

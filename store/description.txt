@@ -49,4 +49,4 @@ HOW IT WORKS
 Annotate Together is part of TutorNetworking's free toolkit for independent tutors. Explore more at:
 https://tutornetworking.com/tools/annotate-together?utm_source=chrome_web_store&utm_medium=extension
 
-This extension uses Firebase Realtime Database for synchronization. No personal information is collected or stored. All drawing data is temporary and automatically deleted.
+This extension uses Firebase Realtime Database for synchronization. No personal information is collected or stored.
